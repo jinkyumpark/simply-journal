@@ -21,4 +21,9 @@ public class MemberController {
     public void addMember(@RequestBody @Valid Member member) {
         userService.addMember(member);
     }
+
+    @DeleteMapping("{id}")
+    public void deleteMember(@PathVariable("id") Long id) {
+        userService.deleteMember(id);
+    }
 }

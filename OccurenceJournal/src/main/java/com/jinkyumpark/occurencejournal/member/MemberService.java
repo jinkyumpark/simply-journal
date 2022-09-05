@@ -24,4 +24,14 @@ public class MemberService {
 
         memberRepository.save(member);
     }
+
+    public void deleteMember(Long id) {
+        Optional<Member> memberOptional = memberRepository.findById(id);
+
+        if(memberOptional.isEmpty()) {
+            throw new IllegalStateException("User does not exists");
+        }
+
+        memberRepository.delete(memberOptional.get());
+    }
 }
