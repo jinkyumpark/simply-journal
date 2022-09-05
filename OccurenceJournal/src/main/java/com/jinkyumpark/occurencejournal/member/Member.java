@@ -1,9 +1,11 @@
 package com.jinkyumpark.occurencejournal.member;
 
+import com.jinkyumpark.occurencejournal.post.Post;
 import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,4 +29,7 @@ public class Member {
 
     @Column(name = "birthdate")
     private Timestamp birthDate;
+
+    @OneToMany(mappedBy = "member", orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Post> postList;
 }
