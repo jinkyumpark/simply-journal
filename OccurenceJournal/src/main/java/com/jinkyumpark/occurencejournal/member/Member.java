@@ -1,5 +1,6 @@
 package com.jinkyumpark.occurencejournal.member;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.jinkyumpark.occurencejournal.post.Post;
 import lombok.*;
 
@@ -31,5 +32,6 @@ public class Member {
     private Timestamp birthDate;
 
     @OneToMany(mappedBy = "member", orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Post> postList;
 }

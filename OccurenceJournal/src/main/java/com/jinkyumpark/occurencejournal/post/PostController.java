@@ -1,13 +1,11 @@
 package com.jinkyumpark.occurencejournal.post;
 
+import com.jinkyumpark.occurencejournal.post.request.PostAddRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.Year;
-import java.util.Calendar;
 import java.util.List;
 
 @AllArgsConstructor
@@ -28,5 +26,10 @@ public class PostController {
         List<Post> postList = postService.getPostByMemberIdWithRange(memberId, year, month);
 
         return postList;
+    }
+
+    @PostMapping
+    public void addPost(@RequestBody @Valid PostAddRequest postRequest) {
+        postService.addPost(postRequest);
     }
 }

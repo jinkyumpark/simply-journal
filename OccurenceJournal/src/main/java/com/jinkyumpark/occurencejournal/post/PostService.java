@@ -2,6 +2,7 @@ package com.jinkyumpark.occurencejournal.post;
 
 import com.jinkyumpark.occurencejournal.member.Member;
 import com.jinkyumpark.occurencejournal.member.MemberRepository;
+import com.jinkyumpark.occurencejournal.post.request.PostAddRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,25 @@ public class PostService {
                 ).atStartOfDay();
 
         return postRepository.findAllByMemberAndPostDateBetween(memberOptional.get(), startDate, endDate);
+    }
+
+    public void addPost(PostAddRequest postRequest) {
+        Post post = new Post();
+
+        if(postRequest.getPostDate() == null) {
+            post.setPostDate(LocalDateTime.now());
+        } else {
+            post.setPostDate(postRequest.getPostDate());
+        }
+
+        Optional<Member> memberOptional = memberRepository.findById(postRequest.getMemberId());
+        if(memberOptional.isEmpty()) {
+            throw new IllegalStateException("User does not exists");
+        }
+        post.setMember(memberOptional.get());
+
+        post.setContent(postRequest.getContent());
+
+        postRepository.save(post);
     }
 }

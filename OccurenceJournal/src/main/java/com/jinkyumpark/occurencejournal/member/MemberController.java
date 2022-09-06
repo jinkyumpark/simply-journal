@@ -8,7 +8,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1/member")
 public class MemberController {
     private MemberService userService;
 

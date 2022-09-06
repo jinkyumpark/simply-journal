@@ -1,5 +1,6 @@
 package com.jinkyumpark.occurencejournal.post;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jinkyumpark.occurencejournal.member.Member;
 import lombok.*;
 
@@ -24,7 +25,11 @@ public class Post {
     @Column(name = "post_date")
     private LocalDateTime postDate;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "member_post_fk"))
     private Member member;
+
+    @Column(name = "content", nullable = false)
+    private String content;
 }
