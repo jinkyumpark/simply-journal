@@ -32,4 +32,9 @@ public class PostController {
     public void addPost(@RequestBody @Valid PostAddRequest postRequest) {
         postService.addPost(postRequest);
     }
+
+    @DeleteMapping("{id}")
+    public void deletePost(@PathVariable("id") Long id) {
+        postService.deletePost(id);
+    }
 }

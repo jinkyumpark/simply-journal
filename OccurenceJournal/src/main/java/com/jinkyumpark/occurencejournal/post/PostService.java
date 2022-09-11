@@ -52,4 +52,12 @@ public class PostService {
 
         postRepository.save(post);
     }
+
+    public void deletePost(Long postId) {
+        Optional<Post> postOptional = postRepository.findById(postId);
+
+        if(postOptional.isEmpty()) throw new IllegalStateException("Post Not Found");
+
+        postRepository.deleteById(postId);
+    }
 }
