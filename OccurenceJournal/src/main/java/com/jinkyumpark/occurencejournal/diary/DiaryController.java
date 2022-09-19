@@ -23,18 +23,18 @@ public class DiaryController {
         if(year == null) year = LocalDateTime.now().getYear();
         if(month == null) month = LocalDateTime.now().getMonthValue();
 
-        List<Diary> diaryList = diaryService.getPostByMemberIdWithRange(memberId, year, month);
+        List<Diary> diaryList = diaryService.getDiariesByMemberIdWithRange(memberId, year, month);
 
         return diaryList;
     }
 
     @PostMapping
     public void addDiary(@RequestBody @Valid DiaryAddRequest postRequest) {
-        diaryService.addPost(postRequest);
+        diaryService.addDiary(postRequest);
     }
 
     @DeleteMapping("{id}")
     public void deleteDiary(@PathVariable("id") Long id) {
-        diaryService.deletePost(id);
+        diaryService.deleteDiary(id);
     }
 }

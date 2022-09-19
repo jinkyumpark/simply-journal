@@ -1,5 +1,6 @@
 package com.jinkyumpark.occurencejournal.diary.request;
 
+import com.jinkyumpark.occurencejournal.diary.Emotion;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -16,4 +17,8 @@ public class DiaryAddRequest {
     @NotNull
     @NotEmpty
     private String content;
+
+    private Emotion emotion;
+
+    private boolean isSpecial;
 }

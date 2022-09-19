@@ -32,4 +32,10 @@ public class Diary {
 
     @Column(name = "content", nullable = false)
     private String content;
+
+    @Column(name = "isSpecial", nullable = false)
+    private boolean isSpecial = false;
+
+    @Column(name = "emotion", nullable = false)
+    private Emotion emotion = Emotion.NOTPROVIDED;
 }

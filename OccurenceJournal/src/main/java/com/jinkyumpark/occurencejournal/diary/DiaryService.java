@@ -18,7 +18,7 @@ public class DiaryService {
     private DiaryRepository diaryRepository;
     private MemberRepository memberRepository;
 
-    public List<Diary> getPostByMemberIdWithRange(String memberId, Integer year, Integer month) {
+    public List<Diary> getDiariesByMemberIdWithRange(String memberId, Integer year, Integer month) {
         Optional<Member> memberOptional = memberRepository.findByMemberId(memberId);
 
         if(memberOptional.isEmpty()) {
@@ -33,27 +33,28 @@ public class DiaryService {
         return diaryRepository.findAllByMemberAndDiaryDateBetween(memberOptional.get(), startDate, endDate);
     }
 
-    public void addPost(DiaryAddRequest postRequest) {
+    public void addDiary(DiaryAddRequest diaryAddRequest) {
         Diary diary = new Diary();
 
-        if(postRequest.getPostDate() == null) {
+        if(diaryAddRequest.getPostDate() == null) {
             diary.setDiaryDate(LocalDateTime.now());
         } else {
-            diary.setDiaryDate(postRequest.getPostDate());
+            diary.setDiaryDate(diaryAddRequest.getPostDate());
         }
 
-        Optional<Member> memberOptional = memberRepository.findById(postRequest.getMemberId());
+        Optional<Member> memberOptional = memberRepository.findById(diaryAddRequest.getMemberId());
         if(memberOptional.isEmpty()) {
             throw new IllegalStateException("User does not exists");
         }
         diary.setMember(memberOptional.get());
-
-        diary.setContent(postRequest.getContent());
+        diary.setContent(diaryAddRequest.getContent());
+        diary.setEmotion(diaryAddRequest.getEmotion());
+        diary.setSpecial(diaryAddRequest.isSpecial());
 
         diaryRepository.save(diary);
     }
 
-    public void deletePost(Long postId) {
+    public void deleteDiary(Long postId) {
         Optional<Diary> postOptional = diaryRepository.findById(postId);
 
         if(postOptional.isEmpty()) throw new IllegalStateException("Post Not Found");
