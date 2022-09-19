@@ -1,6 +1,7 @@
 package com.jinkyumpark.occurencejournal.diary;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jinkyumpark.occurencejournal.member.Member;
 import lombok.*;
 

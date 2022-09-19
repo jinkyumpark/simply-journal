@@ -18,7 +18,7 @@ const DiaryBox = ({ diary }) => {
         ['SAD', 'primary'],
         ['ANGRY', 'danger'],
         ['VERYHAPPY', 'success'],
-        ['NOTPROVIDED', 'gray'],
+        ['NOTPROVIDED', 'dark'],
     ]);
 
     return (
@@ -30,8 +30,8 @@ const DiaryBox = ({ diary }) => {
                 }
             >
                 <h4>
-                    {diary.postDate
-                        .substring(0, diary.postDate.indexOf('T'))
+                    {diary.diaryDate
+                        .substring(0, diary.diaryDate.indexOf('T'))
                         .replace('-', '년 ')
                         .replace('-', '월 ')
                         .concat('일')}

@@ -1,39 +1,34 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import DiaryBox from './DiaryBox';
+import NoDiary from './NoDiary';
 
 const DiaryView = () => {
-    let diaries = [
-        {
-            id: 1,
-            postDate: '2022-09-01T17:45',
-            content: 'TEST 1',
-            emotion: 'VERYHAPPY',
-        },
-        {
-            id: 2,
-            postDate: '2022-09-02T17:45',
-            content: 'TEST 2',
-            emotion: 'SAD',
-        },
-        {
-            id: 3,
-            postDate: '2022-09-03T17:45',
-            content: 'TEST 3',
-            emotion: 'ANGRY',
-        },
-        {
-            id: 4,
-            postDate: '2022-09-10T17:45',
-            content: 'TEST 4',
-            emotion: 'NEUTRAL',
-        },
-    ];
+    const [diaries, setDiaries] = useState();
+
+    useEffect(() => {
+        fetch('http://localhost/api/v1/diary/all?id=jinkyumpark')
+            .then((res) => {
+                return res.json();
+            })
+            .then((diaries) => {
+                setDiaries(diaries);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
 
     return (
         <div className='row justify-content-center m-0 p-0'>
-            {diaries.map((diary) => {
-                return <DiaryBox diary={diary} />;
-            })}
+            {!diaries ? (
+                <NoDiary />
+            ) : (
+                diaries.map((diary) => {
+                    return <DiaryBox diary={diary} />;
+                })
+            )}
         </div>
     );
 };
