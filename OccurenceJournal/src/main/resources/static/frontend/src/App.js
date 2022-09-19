@@ -4,6 +4,7 @@ import TopNav from './common/TopNav';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Introduction from './introduction/Introduction';
 import DiaryView from './diary/DiaryView';
+import DiaryWriteView from './diary/DiaryWriteView';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Routes>
                     <Route path='/introduction' element={<Introduction />} />
                     <Route path='/diary/all' element={<DiaryView />} />
+                    <Route path='diary/write' element={<DiaryWriteView />} />
                 </Routes>
             </Router>
         </div>

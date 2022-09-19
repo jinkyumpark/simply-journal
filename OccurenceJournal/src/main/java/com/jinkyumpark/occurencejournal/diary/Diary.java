@@ -1,4 +1,4 @@
-package com.jinkyumpark.occurencejournal.post;
+package com.jinkyumpark.occurencejournal.diary;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jinkyumpark.occurencejournal.member.Member;
@@ -13,21 +13,21 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode
 
-@Entity(name = "Post")
-@Table(name = "post")
-public class Post {
+@Entity(name = "Diary")
+@Table(name = "diary")
+public class Diary {
     @Id
-    @SequenceGenerator(name = "post_id_seq", sequenceName = "post_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_id_seq")
+    @SequenceGenerator(name = "diary_id_seq", sequenceName = "diary_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diary_id_seq")
     @Column(name = "id", updatable = false)
     private Long id;
 
     @Column(name = "post_date")
-    private LocalDateTime postDate;
+    private LocalDateTime diaryDate;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "member_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "member_post_fk"))
+    @JoinColumn(name = "member_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "member_diary_fk"))
     private Member member;
 
     @Column(name = "content", nullable = false)

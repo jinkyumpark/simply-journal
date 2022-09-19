@@ -1,4 +1,4 @@
-package com.jinkyumpark.occurencejournal.post.request;
+package com.jinkyumpark.occurencejournal.diary.request;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
-public class PostAddRequest {
+public class DiaryAddRequest {
     @NotNull
     private Long memberId;
 

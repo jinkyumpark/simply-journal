@@ -1,8 +1,8 @@
-package com.jinkyumpark.occurencejournal.post;
+package com.jinkyumpark.occurencejournal.diary;
 
 import com.jinkyumpark.occurencejournal.member.Member;
 import com.jinkyumpark.occurencejournal.member.MemberRepository;
-import com.jinkyumpark.occurencejournal.post.request.PostAddRequest;
+import com.jinkyumpark.occurencejournal.diary.request.DiaryAddRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,11 @@ import java.util.Optional;
 @AllArgsConstructor
 
 @Service
-public class PostService {
-    private PostRepository postRepository;
+public class DiaryService {
+    private DiaryRepository diaryRepository;
     private MemberRepository memberRepository;
 
-    public List<Post> getPostByMemberIdWithRange(String memberId, Integer year, Integer month) {
+    public List<Diary> getPostByMemberIdWithRange(String memberId, Integer year, Integer month) {
         Optional<Member> memberOptional = memberRepository.findByMemberId(memberId);
 
         if(memberOptional.isEmpty()) {
@@ -30,34 +30,34 @@ public class PostService {
                 LocalDate.of(year, month, 1).lengthOfMonth()
                 ).atStartOfDay();
 
-        return postRepository.findAllByMemberAndPostDateBetween(memberOptional.get(), startDate, endDate);
+        return diaryRepository.findAllByMemberAndDiaryDateBetween(memberOptional.get(), startDate, endDate);
     }
 
-    public void addPost(PostAddRequest postRequest) {
-        Post post = new Post();
+    public void addPost(DiaryAddRequest postRequest) {
+        Diary diary = new Diary();
 
         if(postRequest.getPostDate() == null) {
-            post.setPostDate(LocalDateTime.now());
+            diary.setDiaryDate(LocalDateTime.now());
         } else {
-            post.setPostDate(postRequest.getPostDate());
+            diary.setDiaryDate(postRequest.getPostDate());
         }
 
         Optional<Member> memberOptional = memberRepository.findById(postRequest.getMemberId());
         if(memberOptional.isEmpty()) {
             throw new IllegalStateException("User does not exists");
         }
-        post.setMember(memberOptional.get());
+        diary.setMember(memberOptional.get());
 
-        post.setContent(postRequest.getContent());
+        diary.setContent(postRequest.getContent());
 
-        postRepository.save(post);
+        diaryRepository.save(diary);
     }
 
     public void deletePost(Long postId) {
-        Optional<Post> postOptional = postRepository.findById(postId);
+        Optional<Diary> postOptional = diaryRepository.findById(postId);
 
         if(postOptional.isEmpty()) throw new IllegalStateException("Post Not Found");
 
-        postRepository.deleteById(postId);
+        diaryRepository.deleteById(postId);
     }
 }

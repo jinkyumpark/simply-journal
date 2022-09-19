@@ -1,7 +1,7 @@
 package com.jinkyumpark.occurencejournal.member;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.jinkyumpark.occurencejournal.post.Post;
+import com.jinkyumpark.occurencejournal.diary.Diary;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,5 +33,5 @@ public class Member {
 
     @OneToMany(mappedBy = "member", orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonBackReference
-    private List<Post> postList;
+    private List<Diary> diaryList;
 }
