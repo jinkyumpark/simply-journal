@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import DiaryBox from './DiaryBox';
+import DiaryDateSelectView from './DiaryDateSelectView';
 import NoDiary from './NoDiary';
 
 const DiaryView = () => {
@@ -22,6 +23,8 @@ const DiaryView = () => {
 
     return (
         <div className='row justify-content-center m-0 p-0'>
+            <DiaryDateSelectView />
+
             {!diaries ? (
                 <NoDiary />
             ) : (

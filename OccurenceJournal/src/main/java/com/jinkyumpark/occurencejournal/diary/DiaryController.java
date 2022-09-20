@@ -29,8 +29,8 @@ public class DiaryController {
     }
 
     @PostMapping
-    public void addDiary(@RequestBody @Valid DiaryAddRequest postRequest) {
-        diaryService.addDiary(postRequest);
+    public void addDiary(@RequestBody @Valid DiaryAddRequest diaryAddRequest) {
+        diaryService.addDiary(diaryAddRequest);
     }
 
     @DeleteMapping("{id}")

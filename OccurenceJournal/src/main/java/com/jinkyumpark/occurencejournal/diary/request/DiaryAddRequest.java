@@ -1,6 +1,5 @@
 package com.jinkyumpark.occurencejournal.diary.request;
 
-import com.jinkyumpark.occurencejournal.diary.Emotion;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -12,13 +11,13 @@ public class DiaryAddRequest {
     @NotNull
     private Long memberId;
 
-    private LocalDateTime postDate;
+    private LocalDateTime diaryDate;
 
     @NotNull
     @NotEmpty
     private String content;
 
-    private Emotion emotion;
-
+    private String emotion;
     private boolean isSpecial;
+    private boolean isPublic;
 }

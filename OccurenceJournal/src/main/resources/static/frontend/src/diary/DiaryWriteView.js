@@ -34,8 +34,14 @@ const DiaryWriteView = () => {
                 'Content-type': 'application/json',
             },
             body: JSON.stringify({
+                memberId: 2,
                 diaryDate:
-                    selectedYear + '-' + selectedMonth + '-' + selectedDay,
+                    selectedYear +
+                    '-' +
+                    selectedMonth +
+                    '-' +
+                    selectedDay +
+                    'T00:00',
                 content: content,
                 emotion: selectedEmotion,
                 isSpecial: isSpecial,
@@ -132,7 +138,7 @@ const DiaryWriteView = () => {
                                     setSelectedEmotion(e.target.value)
                                 }
                             >
-                                <option>모르겠어요</option>
+                                <option value='NOTPROVIDED'>모르겠어요</option>
                                 <option value='VERYHAPPY'>너무 좋아요!</option>
                                 <option value='HAPPY'>좋아요</option>
                                 <option value='SAD'>슬퍼요</option>

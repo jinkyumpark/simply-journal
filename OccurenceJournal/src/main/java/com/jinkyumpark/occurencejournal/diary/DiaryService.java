@@ -30,16 +30,16 @@ public class DiaryService {
                 LocalDate.of(year, month, 1).lengthOfMonth()
                 ).atStartOfDay();
 
-        return diaryRepository.findAllByMemberAndDiaryDateBetween(memberOptional.get(), startDate, endDate);
+        return diaryRepository.findAllByMemberAndDiaryDateBetweenOrderByDiaryDateDesc(memberOptional.get(), startDate, endDate);
     }
 
     public void addDiary(DiaryAddRequest diaryAddRequest) {
         Diary diary = new Diary();
 
-        if(diaryAddRequest.getPostDate() == null) {
+        if(diaryAddRequest.getDiaryDate() == null) {
             diary.setDiaryDate(LocalDateTime.now());
         } else {
-            diary.setDiaryDate(diaryAddRequest.getPostDate());
+            diary.setDiaryDate(diaryAddRequest.getDiaryDate());
         }
 
         Optional<Member> memberOptional = memberRepository.findById(diaryAddRequest.getMemberId());
@@ -48,7 +48,7 @@ public class DiaryService {
         }
         diary.setMember(memberOptional.get());
         diary.setContent(diaryAddRequest.getContent());
-        diary.setEmotion(diaryAddRequest.getEmotion());
+        diary.setEmotion(Emotion.valueOf(diaryAddRequest.getEmotion()));
         diary.setSpecial(diaryAddRequest.isSpecial());
 
         diaryRepository.save(diary);
