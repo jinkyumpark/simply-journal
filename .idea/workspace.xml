@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="687894fb-046f-4170-9e86-82c96de2cc56" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/OccurenceJournal/src/main/resources/static/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/OccurenceJournal/src/main/resources/static/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +14,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2EMgtF6yo0nbkQQftRjPcyY6ESU" />
   <component name="ProjectViewState">
@@ -25,7 +28,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jinkyumpark/development/occurence-journal&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jinkyumpark/development/simply-journal&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -42,6 +45,8 @@
       <updated>1662411079927</updated>
       <workItem from="1662411081118" duration="168000" />
       <workItem from="1663557044117" duration="7000" />
+      <workItem from="1663804311285" duration="6000" />
+      <workItem from="1663804332734" duration="69000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,6 @@
-package com.jinkyumpark.occurencejournal.diary;
+package com.jinkyumpark.simplyjournal.diary;
 
-import com.jinkyumpark.occurencejournal.member.Member;
+import com.jinkyumpark.simplyjournal.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

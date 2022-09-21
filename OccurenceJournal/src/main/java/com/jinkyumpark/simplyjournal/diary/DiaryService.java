@@ -1,8 +1,8 @@
-package com.jinkyumpark.occurencejournal.diary;
+package com.jinkyumpark.simplyjournal.diary;
 
-import com.jinkyumpark.occurencejournal.member.Member;
-import com.jinkyumpark.occurencejournal.member.MemberRepository;
-import com.jinkyumpark.occurencejournal.diary.request.DiaryAddRequest;
+import com.jinkyumpark.simplyjournal.member.Member;
+import com.jinkyumpark.simplyjournal.member.MemberRepository;
+import com.jinkyumpark.simplyjournal.diary.request.DiaryAddRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

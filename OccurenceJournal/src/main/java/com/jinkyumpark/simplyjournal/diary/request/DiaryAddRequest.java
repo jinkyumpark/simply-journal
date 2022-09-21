@@ -1,4 +1,4 @@
-package com.jinkyumpark.occurencejournal.diary.request;
+package com.jinkyumpark.simplyjournal.diary.request;
 
 import lombok.Data;
 

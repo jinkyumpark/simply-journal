@@ -1,4 +1,4 @@
-package com.jinkyumpark.occurencejournal.diary;
+package com.jinkyumpark.simplyjournal.diary;
 
 public enum Emotion {
     HAPPY,

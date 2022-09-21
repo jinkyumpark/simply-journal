@@ -1,4 +1,4 @@
-package com.jinkyumpark.occurencejournal.member;
+package com.jinkyumpark.simplyjournal.member;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

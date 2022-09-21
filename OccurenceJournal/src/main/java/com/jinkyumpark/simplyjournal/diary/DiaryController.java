@@ -1,7 +1,7 @@
-package com.jinkyumpark.occurencejournal.diary;
+package com.jinkyumpark.simplyjournal.diary;
 
-import com.jinkyumpark.occurencejournal.diary.request.DiaryAddRequest;
-import com.jinkyumpark.occurencejournal.diary.request.DiaryDeleteRequest;
+import com.jinkyumpark.simplyjournal.diary.request.DiaryAddRequest;
+import com.jinkyumpark.simplyjournal.diary.request.DiaryDeleteRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

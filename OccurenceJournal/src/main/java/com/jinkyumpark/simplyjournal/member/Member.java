@@ -1,7 +1,7 @@
-package com.jinkyumpark.occurencejournal.member;
+package com.jinkyumpark.simplyjournal.member;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.jinkyumpark.occurencejournal.diary.Diary;
+import com.jinkyumpark.simplyjournal.diary.Diary;
 import lombok.*;
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package com.jinkyumpark.occurencejournal;
+package com.jinkyumpark.simplyjournal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,10 +7,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class OccurenceJournalApplication {
+public class SimplyJournalApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OccurenceJournalApplication.class, args);
+		SpringApplication.run(SimplyJournalApplication.class, args);
 	}
 
 	@Bean
