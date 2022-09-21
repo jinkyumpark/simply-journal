@@ -1,8 +1,14 @@
+// React
 import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// Components
+
+// Bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { useState } from 'react';
 
 const DiaryWriteView = () => {
     const [currentYear, currentMonth, currentDay] = new Date()
@@ -20,6 +26,9 @@ const DiaryWriteView = () => {
     const [isSpecial, setIsSpecial] = useState(false);
 
     const [validated, setValidated] = useState(false);
+
+    let navigate = useNavigate();
+
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (!form.checkValidity()) {
@@ -40,16 +49,29 @@ const DiaryWriteView = () => {
                     '-' +
                     selectedMonth +
                     '-' +
-                    selectedDay +
+                    (selectedDay.length === 1
+                        ? '0' + selectedDay
+                        : selectedDay) +
                     'T00:00',
                 content: content,
                 emotion: selectedEmotion,
                 isSpecial: isSpecial,
                 isPublic: isPublic,
             }),
-        }).then((res) => {
-            console.log(res.json());
-        });
+        })
+            .then((res) => {
+                const statusCode = res.status.toString();
+
+                if (statusCode.startsWith('2')) {
+                    alert('일기를 추가했어요!');
+                    navigate('/diary/all');
+                } else {
+                    alert('일기를 추가할 수 없어요. 다시 시도해 주세요');
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
         setValidated(true);
     };
 
@@ -116,6 +138,7 @@ const DiaryWriteView = () => {
                                                         parseInt(currentDay) ===
                                                         day + 1
                                                     }
+                                                    value={day + 1}
                                                 >
                                                     {day + 1 + '일'}
                                                 </option>
