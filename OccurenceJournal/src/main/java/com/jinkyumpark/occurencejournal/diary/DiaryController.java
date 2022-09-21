@@ -1,6 +1,7 @@
 package com.jinkyumpark.occurencejournal.diary;
 
 import com.jinkyumpark.occurencejournal.diary.request.DiaryAddRequest;
+import com.jinkyumpark.occurencejournal.diary.request.DiaryDeleteRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/diary")
+@CrossOrigin("http://localhost:3000")
+
 public class DiaryController {
     private DiaryService diaryService;
 
@@ -38,8 +41,8 @@ public class DiaryController {
         diaryService.addDiary(diaryAddRequest);
     }
 
-    @DeleteMapping("{id}")
-    public void deleteDiary(@PathVariable("id") Long id) {
-        diaryService.deleteDiary(id);
+    @DeleteMapping
+    public void deleteDiary(@RequestBody @Valid DiaryDeleteRequest diaryDeleteRequest) {
+        diaryService.deleteDiary(diaryDeleteRequest.getId());
     }
 }

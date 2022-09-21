@@ -1,17 +1,22 @@
+// React
 import React from 'react';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+
+// Components
 import DiaryBox from './Diary';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import NoDiary from './NoDiary';
 
+// Bootstrap
 import { Button } from 'react-bootstrap';
 
 const DiaryDetailView = () => {
     const { id } = useParams();
-    const diaryUrl = 'http://localhost/api/v1/diary/';
 
+    const diaryUrl = 'http://localhost/api/v1/diary/';
     const [diary, setDiary] = useState(null);
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         fetch(diaryUrl + id)
@@ -27,18 +32,21 @@ const DiaryDetailView = () => {
     }, []);
 
     const deleteDiary = (id) => {
-        fetch('http://localhost/api/v1/diary/' + id, {
+        fetch(diaryUrl, {
             method: 'DELETE',
-            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },
+            body: JSON.stringify({
+                id: parseInt(id),
+            }),
         })
             .then((res) => {
-                const statusCode = res.status;
+                const statusCode = res.status.toString();
 
                 if (statusCode.startsWith('2')) {
                     alert('일기를 지웠어요');
+                    navigate('/diary/all');
                 } else {
                     alert('일기를 지울 수 없었어요. 다시 시도해 주세요');
                 }
@@ -67,7 +75,7 @@ const DiaryDetailView = () => {
                         className='col-12'
                         onClick={() => {
                             if (window.confirm('정말 일기를 삭제할까요?')) {
-                                deleteDiary(diary.id);
+                                deleteDiary(id);
                             }
                         }}
                     >
