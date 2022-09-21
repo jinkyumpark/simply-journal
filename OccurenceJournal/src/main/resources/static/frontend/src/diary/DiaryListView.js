@@ -2,11 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DiaryBox from './DiaryBox';
+import DiaryBox from './Diary';
 import DiaryDateSelectView from './DiaryDateSelectView';
 import NoDiary from './NoDiary';
 
-const DiaryView = () => {
+const DiaryListView = () => {
     const [diaries, setDiaries] = useState();
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const DiaryView = () => {
     }, []);
 
     return (
-        <div className='row justify-content-center m-0 p-0'>
+        <div className='row flex justify-content-center m-0 p-0'>
             <DiaryDateSelectView />
 
             {!diaries ? (
@@ -44,4 +44,4 @@ const DiaryView = () => {
     );
 };
 
-export default DiaryView;
+export default DiaryListView;

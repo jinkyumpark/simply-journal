@@ -3,7 +3,7 @@ import TopNav from './common/TopNav';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Introduction from './introduction/Introduction';
-import DiaryView from './diary/DiaryView';
+import DiaryListView from './diary/DiaryListView';
 import DiaryWriteView from './diary/DiaryWriteView';
 import Main from './Main';
 import DiaryDetailView from './diary/DiaryDetailView';
@@ -19,7 +19,7 @@ function App() {
                     <Route path='/introduction' element={<Introduction />} />
 
                     <Route path='/diary/:id' element={<DiaryDetailView />} />
-                    <Route path='/diary/all' element={<DiaryView />} />
+                    <Route path='/diary/all' element={<DiaryListView />} />
                     <Route path='/diary/write' element={<DiaryWriteView />} />
                 </Routes>
             </Router>

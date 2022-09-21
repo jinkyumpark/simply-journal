@@ -8,11 +8,8 @@ import {
 } from 'react-icons/ri';
 import { ImAngry as AngryIcon } from 'react-icons/im';
 import { MdOutlineDoNotDisturbAlt as NoEmotionIcon } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
 
-// Happy, Neutral, Sad, Angry, Very Happy
-
-const DiaryBox = ({ diary }) => {
+const Diary = ({ diary }) => {
     const emotionColorMap = new Map([
         ['HAPPY', 'success'],
         ['NEUTRAL', 'warning'],
@@ -37,9 +34,10 @@ const DiaryBox = ({ diary }) => {
                         .replace('-', '월 ')
                         .concat('일')}
                 </h4>
+
                 <div className='display-6 mb-1'>
                     {diary.emotion === 'HAPPY' ? (
-                        <VeryHappyIcon />
+                        <HappyIcon />
                     ) : diary.emotion === 'SAD' ? (
                         <SadIcon />
                     ) : diary.emotion === 'ANGRY' ? (
@@ -63,4 +61,4 @@ const DiaryBox = ({ diary }) => {
     );
 };
 
-export default DiaryBox;
+export default Diary;
