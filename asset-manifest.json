@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.29cd549e.css",
-    "main.js": "/static/js/main.043a3dd6.js",
-    "static/media/red-diary-blue-bg.png": "/static/media/red-diary-blue-bg.87fe8d6e70278db9d444.png",
-    "index.html": "/index.html",
-    "main.29cd549e.css.map": "/static/css/main.29cd549e.css.map",
-    "main.043a3dd6.js.map": "/static/js/main.043a3dd6.js.map"
+    "main.css": "/occurence-journal/static/css/main.29cd549e.css",
+    "main.js": "/occurence-journal/static/js/main.68d6e0c1.js",
+    "static/media/red-diary-blue-bg.png": "/occurence-journal/static/media/red-diary-blue-bg.87fe8d6e70278db9d444.png",
+    "index.html": "/occurence-journal/index.html",
+    "main.29cd549e.css.map": "/occurence-journal/static/css/main.29cd549e.css.map",
+    "main.68d6e0c1.js.map": "/occurence-journal/static/js/main.68d6e0c1.js.map"
   },
   "entrypoints": [
     "static/css/main.29cd549e.css",
-    "static/js/main.043a3dd6.js"
+    "static/js/main.68d6e0c1.js"
   ]
 }
