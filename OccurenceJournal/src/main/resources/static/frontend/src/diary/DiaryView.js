@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import DiaryBox from './DiaryBox';
 import DiaryDateSelectView from './DiaryDateSelectView';
 import NoDiary from './NoDiary';
@@ -29,7 +30,14 @@ const DiaryView = () => {
                 <NoDiary />
             ) : (
                 diaries.map((diary) => {
-                    return <DiaryBox diary={diary} />;
+                    return (
+                        <Link
+                            to={`/diary/${diary.id}`}
+                            className='text-decoration-none text-black'
+                        >
+                            <DiaryBox diary={diary} />
+                        </Link>
+                    );
                 })
             )}
         </div>

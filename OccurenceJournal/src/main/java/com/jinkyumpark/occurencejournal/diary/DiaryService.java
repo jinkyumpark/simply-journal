@@ -33,6 +33,16 @@ public class DiaryService {
         return diaryRepository.findAllByMemberAndDiaryDateBetweenOrderByDiaryDateDesc(memberOptional.get(), startDate, endDate);
     }
 
+    public Diary getDiaryById(Long id) {
+        Optional<Diary> diaryOptional = diaryRepository.findById(id);
+
+        if(diaryOptional.isEmpty()) {
+            throw new IllegalStateException("Diary does not exists");
+        }
+
+        return diaryOptional.get();
+    }
+
     public void addDiary(DiaryAddRequest diaryAddRequest) {
         Diary diary = new Diary();
 
@@ -61,4 +71,5 @@ public class DiaryService {
 
         diaryRepository.deleteById(postId);
     }
+
 }

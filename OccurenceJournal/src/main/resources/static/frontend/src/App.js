@@ -6,6 +6,7 @@ import Introduction from './introduction/Introduction';
 import DiaryView from './diary/DiaryView';
 import DiaryWriteView from './diary/DiaryWriteView';
 import Main from './Main';
+import DiaryDetailView from './diary/DiaryDetailView';
 
 function App() {
     return (
@@ -16,8 +17,10 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Main />} />
                     <Route path='/introduction' element={<Introduction />} />
+
+                    <Route path='/diary/:id' element={<DiaryDetailView />} />
                     <Route path='/diary/all' element={<DiaryView />} />
-                    <Route path='diary/write' element={<DiaryWriteView />} />
+                    <Route path='/diary/write' element={<DiaryWriteView />} />
                 </Routes>
             </Router>
         </div>

@@ -28,6 +28,11 @@ public class DiaryController {
         return diaryList;
     }
 
+    @GetMapping("{id}")
+    public Diary getDiary(@PathVariable("id") Long id) {
+        return diaryService.getDiaryById(id);
+    }
+
     @PostMapping
     public void addDiary(@RequestBody @Valid DiaryAddRequest diaryAddRequest) {
         diaryService.addDiary(diaryAddRequest);
