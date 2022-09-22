@@ -1,27 +1,28 @@
 import React from 'react';
 
-const Page = ({ totalCount, itemsPerPage, activePage }) => {
+const Page = ({ totalPages, currentPage, url }) => {
     return (
         <>
             <ul class='pagination justify-content-center'>
-                {Array.from(
-                    { length: totalCount / itemsPerPage + 1 },
-                    (_, i) => i + 1
-                ).map((pageNumber) => {
-                    return (
-                        <div className='page-item'>
-                            <a
-                                href=''
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (pageNumber) => {
+                        return (
+                            <li
                                 className={
-                                    'page-link' +
-                                    (activePage === pageNumber && ' active')
+                                    'page-item ' +
+                                    (pageNumber == currentPage ? 'active' : '')
                                 }
                             >
-                                {pageNumber}
-                            </a>
-                        </div>
-                    );
-                })}
+                                <a
+                                    href={url + '?page=' + pageNumber}
+                                    className='page-link'
+                                >
+                                    {pageNumber}
+                                </a>
+                            </li>
+                        );
+                    }
+                )}
             </ul>
         </>
     );

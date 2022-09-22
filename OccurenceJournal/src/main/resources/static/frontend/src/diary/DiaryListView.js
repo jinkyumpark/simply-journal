@@ -1,7 +1,8 @@
+// React
 import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+// Component
 import Diary from './Diary';
 import DiaryDateSelectView from './DiaryDateSelectView';
 import NotFound from '../common/NotFound';
@@ -30,13 +31,27 @@ const DiaryListView = () => {
     const [diaries, setDiaries] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
+    const [totalPages, setTotalPages] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    let location = useLocation();
+
     useEffect(() => {
-        fetch('http://localhost/api/v1/diary/all?id=jinkyumpark')
+        const page =
+            location.search.length === 0
+                ? 1
+                : location.search.substring(location.search.indexOf('=') + 1);
+        setCurrentPage(page);
+
+        fetch(
+            `http://localhost/api/v1/diary/all?id=jinkyumpark&page=${page - 1}`
+        )
             .then((res) => {
                 return res.json();
             })
-            .then((diaries) => {
-                setDiaries(diaries);
+            .then((res) => {
+                setDiaries(res.content);
+                setTotalPages(res.totalPages);
                 setIsLoading(false);
             })
             .catch((err) => {
@@ -69,9 +84,9 @@ const DiaryListView = () => {
 
             <div className='mt-5 mb-5'>
                 <Page
-                    totalCount={diaries ? diaries.length : 0}
-                    itemsPerPage={10}
-                    activePage={1}
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    url={'/diary/all'}
                 />
             </div>
         </div>

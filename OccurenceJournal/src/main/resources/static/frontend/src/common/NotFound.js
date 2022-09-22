@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { VscError as ErrorIcon } from 'react-icons/vsc';
 
 const NotFound = ({ message }) => {

@@ -4,6 +4,8 @@ import com.jinkyumpark.simplyjournal.member.Member;
 import com.jinkyumpark.simplyjournal.member.MemberRepository;
 import com.jinkyumpark.simplyjournal.diary.request.DiaryAddRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,7 +20,7 @@ public class DiaryService {
     private DiaryRepository diaryRepository;
     private MemberRepository memberRepository;
 
-    public List<Diary> getDiariesByMemberIdWithRange(String memberId, Integer year, Integer month) {
+    public Page<Diary> getDiariesByMemberIdWithRange(String memberId, Integer year, Integer month, PageRequest pageRequest) {
         Optional<Member> memberOptional = memberRepository.findByMemberId(memberId);
 
         if(memberOptional.isEmpty()) {
@@ -30,7 +32,7 @@ public class DiaryService {
                 LocalDate.of(year, month, 1).lengthOfMonth()
                 ).atStartOfDay();
 
-        return diaryRepository.findAllByMemberAndDiaryDateBetweenOrderByDiaryDateDesc(memberOptional.get(), startDate, endDate);
+        return diaryRepository.findAllByMemberAndDiaryDateBetweenOrderByDiaryDateDesc(memberOptional.get(), startDate, endDate, pageRequest);
     }
 
     public Diary getDiaryById(Long id) {

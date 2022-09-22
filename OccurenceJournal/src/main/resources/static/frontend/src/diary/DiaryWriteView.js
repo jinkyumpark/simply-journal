@@ -47,7 +47,9 @@ const DiaryWriteView = () => {
                 diaryDate:
                     selectedYear +
                     '-' +
-                    selectedMonth +
+                    (selectedMonth.length === 1
+                        ? '0' + selectedMonth
+                        : selectedMonth) +
                     '-' +
                     (selectedDay.length === 1
                         ? '0' + selectedDay
