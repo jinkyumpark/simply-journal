@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Diary from './Diary';
 import DiaryDateSelectView from './DiaryDateSelectView';
 import NotFound from '../common/NotFound';
+import Page from '../common/Page';
 
 const LoadingView = () => {
     return (
@@ -44,7 +45,7 @@ const DiaryListView = () => {
     }, []);
 
     return (
-        <div className='row flex justify-content-center m-0 p-0'>
+        <div className='row justify-content-center m-0 p-0'>
             <DiaryDateSelectView />
 
             {isLoading ? (
@@ -65,6 +66,14 @@ const DiaryListView = () => {
                     );
                 })
             )}
+
+            <div className='mt-5 mb-5'>
+                <Page
+                    totalCount={diaries ? diaries.length : 0}
+                    itemsPerPage={10}
+                    activePage={1}
+                />
+            </div>
         </div>
     );
 };
