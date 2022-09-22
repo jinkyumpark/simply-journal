@@ -20,7 +20,7 @@ const Diary = ({ diary }) => {
     ]);
 
     return (
-        <Card className='m-3 p-0 col-xl-6 col-11'>
+        <Card className='m-3 p-0'>
             <Card.Header
                 className={
                     'd-flex justify-content-between align-items-center text-white bg-' +

@@ -56,7 +56,7 @@ const DiaryListView = () => {
                     return (
                         <Link
                             to={`/diary/${diary.id}`}
-                            className='text-decoration-none text-black'
+                            className='text-decoration-none text-black col-xl-7 col-11'
                         >
                             <DiaryBox diary={diary} />
                         </Link>

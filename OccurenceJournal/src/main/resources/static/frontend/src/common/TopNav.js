@@ -1,5 +1,8 @@
+// React
 import React from 'react';
-
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+// Bootstrap
 import {
     Container,
     Nav,
@@ -8,15 +11,25 @@ import {
     Form,
     Button,
 } from 'react-bootstrap';
-
+// Icons
 import { FaUserCircle as UserIcon } from 'react-icons/fa';
 
 const TopNav = () => {
     // candidate : SImply Journal, 한줄일기
     let serviceName = 'Simply Journal';
 
+    const [keyword, setKeyword] = useState(null);
+    let navigate = useNavigate();
+    const handleSearch = (key) => {
+        if (key !== '' && key != null) {
+            navigate('/search/' + key);
+        } else {
+            alert('검색어를 입력해 주세요');
+        }
+    };
+
     return (
-        <Navbar bg='light' expand='lg'>
+        <Navbar bg='light' expand='lg' className='sticky-top'>
             <Container fluid>
                 <Navbar.Brand href='/'>{serviceName}</Navbar.Brand>
                 <Navbar.Toggle aria-controls='navbarScroll' />
@@ -30,14 +43,25 @@ const TopNav = () => {
                         <Nav.Link href='/diary/write'>일기쓰기</Nav.Link>
                     </Nav>
 
-                    <Form className='d-flex'>
+                    <Form
+                        className='d-flex'
+                        onSubmit={() => {
+                            return handleSearch(keyword);
+                        }}
+                    >
                         <Form.Control
                             type='search'
                             placeholder='일기 내용을 검색하세요'
                             className='me-2'
                             aria-label='Search'
+                            onChange={(e) => {
+                                setKeyword(e.target.value);
+                            }}
                         />
-                        <Button variant='outline-secondary col-3 me-2'>
+                        <Button
+                            variant='outline-secondary col-3 me-2'
+                            type='submit'
+                        >
                             검색
                         </Button>
                         <NavDropdown

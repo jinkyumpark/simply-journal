@@ -36,6 +36,11 @@ public class DiaryController {
         return diaryService.getDiaryById(id);
     }
 
+    @GetMapping("search/{key}")
+    public List<Diary> getDiarySerachResult(@PathVariable("key") String key) {
+        return diaryService.getDiariesByKey(key);
+    }
+
     @PostMapping
     public void addDiary(@RequestBody @Valid DiaryAddRequest diaryAddRequest) {
         diaryService.addDiary(diaryAddRequest);

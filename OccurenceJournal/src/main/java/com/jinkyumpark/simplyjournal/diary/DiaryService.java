@@ -72,4 +72,7 @@ public class DiaryService {
         diaryRepository.deleteById(postId);
     }
 
+    public List<Diary> getDiariesByKey(String key) {
+        return diaryRepository.findAllByContentContaining(key);
+    }
 }
