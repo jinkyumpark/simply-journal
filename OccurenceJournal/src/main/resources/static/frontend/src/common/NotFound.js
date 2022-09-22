@@ -2,7 +2,7 @@ import React from 'react';
 
 import { VscError as ErrorIcon } from 'react-icons/vsc';
 
-const NoDiary = ({ message }) => {
+const NotFound = ({ message }) => {
     return (
         <div className='mt-5'>
             <ErrorIcon className='display-1 mb-3 text-danger' />
@@ -12,4 +12,4 @@ const NoDiary = ({ message }) => {
     );
 };
 
-export default NoDiary;
+export default NotFound;

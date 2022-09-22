@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Diary from '../diary/Diary';
-import NoDiary from '../diary/NoDiary';
+import NotFound from '../common/NotFound';
 
 const SearchResultView = () => {
     const { key } = useParams();
@@ -30,7 +30,7 @@ const SearchResultView = () => {
                 {diaries &&
                     (diaries.length === 0 ? (
                         <div className='row'>
-                            <NoDiary message={'검색 결과가 없어요'} />
+                            <NotFound message={'검색 결과가 없어요'} />
                             <h4 className='text-secondary mt-3'>
                                 검색어를 다시 확인해 주세요 (입력하신 검색어 :{' '}
                                 {key})

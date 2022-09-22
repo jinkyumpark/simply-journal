@@ -2,11 +2,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
 // Components
 import DiaryBox from './Diary';
-import NoDiary from './NoDiary';
-
+import NotFound from '../common/NotFound';
 // Bootstrap
 import { Button } from 'react-bootstrap';
 
@@ -60,7 +58,11 @@ const DiaryDetailView = () => {
     return (
         <div className='container '>
             <div className='row justify-content-center'>
-                {diary ? <DiaryBox diary={diary} /> : <NoDiary />}
+                {diary ? (
+                    <DiaryBox diary={diary} />
+                ) : (
+                    <NotFound message={'없는 일기거나 비공개 일기에요'} />
+                )}
             </div>
 
             <div className='row justify-content-center'>

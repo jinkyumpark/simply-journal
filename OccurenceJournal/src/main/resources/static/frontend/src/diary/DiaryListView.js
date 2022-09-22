@@ -2,9 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DiaryBox from './Diary';
+import Diary from './Diary';
 import DiaryDateSelectView from './DiaryDateSelectView';
-import NoDiary from './NoDiary';
+import NotFound from '../common/NotFound';
 
 const LoadingView = () => {
     return (
@@ -50,7 +50,7 @@ const DiaryListView = () => {
             {isLoading ? (
                 <LoadingView />
             ) : !diaries ? (
-                <NoDiary
+                <NotFound
                     message={'이번달은 일기가 없어요 어서 추가해 보세요!'}
                 />
             ) : (
@@ -60,7 +60,7 @@ const DiaryListView = () => {
                             to={`/diary/${diary.id}`}
                             className='text-decoration-none text-black col-xl-7 col-11'
                         >
-                            <DiaryBox diary={diary} />
+                            <Diary diary={diary} />
                         </Link>
                     );
                 })
