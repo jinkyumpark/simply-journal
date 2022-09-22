@@ -56,6 +56,12 @@ public class DiaryService {
         if(memberOptional.isEmpty()) {
             throw new IllegalStateException("User does not exists");
         }
+
+        List<Diary> diaryWithSameDate = diaryRepository.findAllByMemberAndDiaryDateIs(memberOptional.get(), diary.getDiaryDate());
+        if(! diaryWithSameDate.isEmpty()) {
+            throw new IllegalStateException("이미 같은 날에 일기가 있어요");
+        }
+
         diary.setMember(memberOptional.get());
         diary.setContent(diaryAddRequest.getContent());
         diary.setEmotion(Emotion.valueOf(diaryAddRequest.getEmotion()));

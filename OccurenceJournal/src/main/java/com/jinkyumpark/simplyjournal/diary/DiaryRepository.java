@@ -11,4 +11,6 @@ import java.util.List;
 public interface DiaryRepository extends JpaRepository<Diary, Long> {
     List<Diary> findAllByMemberAndDiaryDateBetweenOrderByDiaryDateDesc(Member member, LocalDateTime startDate, LocalDateTime endDate);
     List<Diary> findAllByContentContaining(String key);
+    List<Diary> findAllByMemberAndDiaryDateIs(Member member, LocalDateTime diaryDate);
+
 }
