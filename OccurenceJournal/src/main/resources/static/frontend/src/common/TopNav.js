@@ -13,6 +13,7 @@ import {
 } from 'react-bootstrap';
 // Icons
 import { FaUserCircle as UserIcon } from 'react-icons/fa';
+import { useEffect } from 'react';
 
 const TopNav = () => {
     // candidate : SImply Journal, 한줄일기

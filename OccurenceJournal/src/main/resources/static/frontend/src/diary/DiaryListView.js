@@ -50,7 +50,9 @@ const DiaryListView = () => {
             {isLoading ? (
                 <LoadingView />
             ) : !diaries ? (
-                <NoDiary />
+                <NoDiary
+                    message={'이번달은 일기가 없어요 어서 추가해 보세요!'}
+                />
             ) : (
                 diaries.map((diary) => {
                     return (
