@@ -13,18 +13,18 @@ import {
 } from 'react-bootstrap';
 // Icons
 import { FaUserCircle as UserIcon } from 'react-icons/fa';
-import { useEffect } from 'react';
 
 const TopNav = () => {
     // candidate : SImply Journal, 한줄일기
     let serviceName = 'Simply Journal';
+    let navigate = useNavigate();
 
     const [keyword, setKeyword] = useState(null);
-    let navigate = useNavigate();
-    const handleSearch = (key) => {
+    const handleSearch = (e, key) => {
         if (key !== '' && key != null) {
             navigate('/search/' + key);
         } else {
+            e.preventDefault();
             alert('검색어를 입력해 주세요');
         }
     };
@@ -46,8 +46,8 @@ const TopNav = () => {
 
                     <Form
                         className='d-flex'
-                        onSubmit={() => {
-                            return handleSearch(keyword);
+                        onSubmit={(e) => {
+                            return handleSearch(e, keyword);
                         }}
                     >
                         <Form.Control

@@ -2,21 +2,21 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 // Components
-
 // Bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { useEffect } from 'react';
 
-const DiaryWriteView = () => {
+const DiaryEdit = () => {
+    let navigate = useNavigate();
+
     const [currentYear, currentMonth, currentDay] = new Date()
         .toISOString()
         .split('T')[0]
         .split('-');
     const monthDayLength = new Date(currentYear, currentMonth, 0).getDate();
-
     const [selectedYear, setSelectedYear] = useState(currentYear);
     const [selectedMonth, setSelectedMonth] = useState(currentMonth);
     const [selectedDay, setSelectedDay] = useState(currentDay);
@@ -24,10 +24,7 @@ const DiaryWriteView = () => {
     const [content, setContent] = useState('');
     const [isPublic, setIsPublic] = useState(false);
     const [isSpecial, setIsSpecial] = useState(false);
-
     const [validated, setValidated] = useState(false);
-
-    let navigate = useNavigate();
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -76,6 +73,10 @@ const DiaryWriteView = () => {
             });
         setValidated(true);
     };
+
+    useEffect(() => {
+        fetch();
+    }, []);
 
     return (
         <div className='container mt-5'>
@@ -204,7 +205,7 @@ const DiaryWriteView = () => {
                     </Form.Group>
 
                     <Button type='submit' className='mt-5 col-6'>
-                        일기등록
+                        일기수정
                     </Button>
                 </Form>
             </div>
@@ -212,4 +213,4 @@ const DiaryWriteView = () => {
     );
 };
 
-export default DiaryWriteView;
+export default DiaryEdit;

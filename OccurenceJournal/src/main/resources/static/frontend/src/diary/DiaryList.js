@@ -4,28 +4,10 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // Component
 import Diary from './Diary';
-import DiaryDateSelectView from './DiaryDateSelectView';
+import DiaryDateSelectView from './DiaryDateSelectBox';
 import NotFound from '../common/NotFound';
 import Page from '../common/Page';
-
-const LoadingView = () => {
-    return (
-        <div className='row justify-content-center'>
-            <div
-                className='spinner-border text-primary'
-                role='status'
-                style={{
-                    width: '5rem',
-                    height: '5rem',
-                }}
-            >
-                <div className='sr-only'></div>
-            </div>
-
-            <h1 className='mt-5'>일기를 가져오고 있어요</h1>
-        </div>
-    );
-};
+import Loading from '../common/Loading';
 
 const DiaryListView = () => {
     const [diaries, setDiaries] = useState();
@@ -64,7 +46,7 @@ const DiaryListView = () => {
             <DiaryDateSelectView />
 
             {isLoading ? (
-                <LoadingView />
+                <Loading />
             ) : !diaries ? (
                 <NotFound
                     message={'이번달은 일기가 없어요 어서 추가해 보세요!'}

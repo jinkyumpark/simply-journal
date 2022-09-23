@@ -6,10 +6,11 @@ import './App.css';
 import TopNav from './common/TopNav';
 import Main from './Main';
 import Introduction from './introduction/Introduction';
-import DiaryListView from './diary/DiaryListView';
-import DiaryDetailView from './diary/DiaryDetailView';
-import DiaryWriteView from './diary/DiaryWriteView';
-import SearchResultView from './search/SearchResultView';
+import DiaryList from './diary/DiaryList';
+import DiaryDetail from './diary/DiaryDetail';
+import DiaryWrite from './diary/DiaryWrite';
+import SearchResult from './search/SearchResult';
+import DiaryEdit from './diary/DiaryEdit';
 
 function App() {
     return (
@@ -21,11 +22,12 @@ function App() {
                     <Route path='/' element={<Main />} />
                     <Route path='/introduction' element={<Introduction />} />
 
-                    <Route path='/diary/:id' element={<DiaryDetailView />} />
-                    <Route path='/diary/all' element={<DiaryListView />} />
-                    <Route path='/diary/write' element={<DiaryWriteView />} />
+                    <Route path='/diary/all' element={<DiaryList />} />
+                    <Route path='/diary/:id' element={<DiaryDetail />} />
+                    <Route path='/diary/write' element={<DiaryWrite />} />
+                    <Route path='/diary/edit/:id' element={<DiaryEdit />} />
 
-                    <Route path='/search/:key' element={<SearchResultView />} />
+                    <Route path='/search/:key' element={<SearchResult />} />
                 </Routes>
             </Router>
         </div>
