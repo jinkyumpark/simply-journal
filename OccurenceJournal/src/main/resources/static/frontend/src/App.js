@@ -22,7 +22,7 @@ function App() {
                     <Route path='/' element={<Main />} />
                     <Route path='/introduction' element={<Introduction />} />
 
-                    <Route path='/diary/all' element={<DiaryList />} />
+                    <Route path='/diary/list/:range' element={<DiaryList />} />
                     <Route path='/diary/:id' element={<DiaryDetail />} />
                     <Route path='/diary/write' element={<DiaryWrite />} />
                     <Route path='/diary/edit/:id' element={<DiaryEdit />} />

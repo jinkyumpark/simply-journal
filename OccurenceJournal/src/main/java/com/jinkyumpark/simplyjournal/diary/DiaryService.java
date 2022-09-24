@@ -20,17 +20,12 @@ public class DiaryService {
     private DiaryRepository diaryRepository;
     private MemberRepository memberRepository;
 
-    public Page<Diary> getDiariesByMemberIdWithRange(String memberId, Integer year, Integer month, PageRequest pageRequest) {
+    public Page<Diary> getDiariesByMemberIdWithRange(String memberId, LocalDateTime startDate, LocalDateTime endDate, PageRequest pageRequest) {
         Optional<Member> memberOptional = memberRepository.findByMemberId(memberId);
 
         if(memberOptional.isEmpty()) {
             throw new IllegalStateException("User does not exists");
         }
-
-        LocalDateTime startDate = LocalDate.of(year, month, 1).atStartOfDay();
-        LocalDateTime endDate = LocalDate.of(year, month,
-                LocalDate.of(year, month, 1).lengthOfMonth()
-                ).atStartOfDay();
 
         return diaryRepository.findAllByMemberAndDiaryDateBetweenOrderByDiaryDateDesc(memberOptional.get(), startDate, endDate, pageRequest);
     }

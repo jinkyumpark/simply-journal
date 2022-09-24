@@ -40,7 +40,7 @@ const TopNav = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href='/diary/all'>일기보기</Nav.Link>
+                        <Nav.Link href='/diary/list/week'>일기보기</Nav.Link>
                         <Nav.Link href='/diary/write'>일기쓰기</Nav.Link>
                     </Nav>
 

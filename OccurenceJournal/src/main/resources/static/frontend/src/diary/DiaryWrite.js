@@ -8,7 +8,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
-const DiaryWriteView = () => {
+const DiaryWrite = () => {
+    let navigate = useNavigate();
+
     const [currentYear, currentMonth, currentDay] = new Date()
         .toISOString()
         .split('T')[0]
@@ -18,12 +20,10 @@ const DiaryWriteView = () => {
     const [selectedMonth, setSelectedMonth] = useState(currentMonth);
     const [selectedDay, setSelectedDay] = useState(currentDay);
     const [selectedEmotion, setSelectedEmotion] = useState('NOTPROVIDED');
-    const [content, setContent] = useState('');
     const [isPublic, setIsPublic] = useState(false);
+    const [content, setContent] = useState('');
     const [isSpecial, setIsSpecial] = useState(false);
     const [validated, setValidated] = useState(false);
-
-    let navigate = useNavigate();
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -208,4 +208,4 @@ const DiaryWriteView = () => {
     );
 };
 
-export default DiaryWriteView;
+export default DiaryWrite;

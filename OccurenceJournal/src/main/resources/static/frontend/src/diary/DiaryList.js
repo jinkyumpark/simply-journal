@@ -10,17 +10,18 @@ import Page from '../common/Page';
 import Loading from '../common/Loading';
 
 const DiaryListView = () => {
+    let location = useLocation();
+
+    const [rangeSelected, setRangeSelected] = useState('week');
     const [diaries, setDiaries] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
 
-    let location = useLocation();
-
     useEffect(() => {
         const page =
-            location.search.length === 0
+            location.search.indexOf('page') === -1
                 ? 1
                 : location.search.substring(location.search.indexOf('=') + 1);
         setCurrentPage(page);
