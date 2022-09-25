@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 // Component
 import Diary from './Diary';
-import DiaryDateSelectView from './DiaryDateSelectBox';
+import DiaryRangeSelect from './DiaryRangeSelect';
 import NotFound from '../common/NotFound';
 import Page from '../common/Page';
 import Loading from '../common/Loading';
@@ -50,7 +50,7 @@ const DiaryListView = () => {
 
     return (
         <div className='row justify-content-center m-0 p-0'>
-            <DiaryDateSelectView method={method} />
+            <DiaryRangeSelect method={method} />
 
             {isLoading ? (
                 <Loading />

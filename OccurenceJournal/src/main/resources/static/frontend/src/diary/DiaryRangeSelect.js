@@ -10,7 +10,7 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Form from 'react-bootstrap/Form';
 // Components
 
-const DiaryDateSelectView = ({ method }) => {
+const DiaryRangeSelect = ({ method }) => {
     const [isRange, setIsRange] = useState(true);
 
     const selectedText = 'primary';
@@ -57,6 +57,8 @@ const DiaryDateSelectView = ({ method }) => {
 };
 
 const RangeSelectView = ({ method }) => {
+    let navigate = useNavigate();
+
     const rangeArray = [
         {
             key: 1,
@@ -99,13 +101,12 @@ const RangeSelectView = ({ method }) => {
                                 id={range.key}
                                 value={range.range}
                                 className='col-12'
+                                onChange={() => {
+                                    navigate(range.url);
+                                    window.location.reload(true);
+                                }}
                             >
-                                <Link
-                                    to={range.url}
-                                    className='text-white text-decoration-none col-3'
-                                >
-                                    {range.label}
-                                </Link>
+                                {range.label}
                             </ToggleButton>
                         );
                     })}
@@ -287,4 +288,4 @@ const DateSelectView = () => {
     );
 };
 
-export default DiaryDateSelectView;
+export default DiaryRangeSelect;
