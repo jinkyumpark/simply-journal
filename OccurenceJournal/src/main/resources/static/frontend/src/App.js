@@ -1,7 +1,5 @@
 // React
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// css
-import './App.css';
 // Component
 import TopNav from './common/TopNav';
 import Main from './Main';

@@ -114,15 +114,11 @@ const DiaryEdit = () => {
 
     return (
         <div className='container mt-5'>
-            <div className='row'>
-                {isNotFound ? (
-                    <NotFound />
-                ) : (
-                    <Form
-                        noValidate
-                        validated={validated}
-                        onSubmit={handleSubmit}
-                    >
+            {isNotFound ? (
+                <NotFound />
+            ) : (
+                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    <div className='row'>
                         <Form.Group className='mb-3'>
                             <div className='row'>
                                 <div className='col-4'>
@@ -264,12 +260,17 @@ const DiaryEdit = () => {
                             />
                         </Form.Group>
 
-                        <Button type='submit' className='mt-5 col-6'>
-                            일기수정
-                        </Button>
-                    </Form>
-                )}
-            </div>
+                        <Form.Group className='row justify-content-center'>
+                            <Button
+                                type='submit'
+                                className='mt-5 col-12 col-lg-6 ms-4'
+                            >
+                                일기수정
+                            </Button>
+                        </Form.Group>
+                    </div>
+                </Form>
+            )}
         </div>
     );
 };
