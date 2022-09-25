@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 // Component
 import Diary from './Diary';
 import DiaryDateSelectView from './DiaryDateSelectBox';
@@ -11,8 +11,12 @@ import Loading from '../common/Loading';
 
 const DiaryListView = () => {
     let location = useLocation();
+    const { method } = useParams();
 
-    const [rangeSelected, setRangeSelected] = useState('week');
+    const noDiaryMessage =
+        '선택하신 기간내에는 일기가 없어요 어서 추가해 보세요!';
+    const pageUrl = `/diary/list/${method}`;
+
     const [diaries, setDiaries] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -27,7 +31,9 @@ const DiaryListView = () => {
         setCurrentPage(page);
 
         fetch(
-            `http://localhost/api/v1/diary/all?id=jinkyumpark&page=${page - 1}`
+            `http://localhost/api/v1/diary?id=jinkyumpark&page=${
+                page - 1
+            }&method=${method.toUpperCase()}`
         )
             .then((res) => {
                 return res.json();
@@ -44,14 +50,12 @@ const DiaryListView = () => {
 
     return (
         <div className='row justify-content-center m-0 p-0'>
-            <DiaryDateSelectView />
+            <DiaryDateSelectView method={method} />
 
             {isLoading ? (
                 <Loading />
             ) : !diaries ? (
-                <NotFound
-                    message={'이번달은 일기가 없어요 어서 추가해 보세요!'}
-                />
+                <NotFound message={noDiaryMessage} />
             ) : (
                 diaries.map((diary) => {
                     return (
@@ -69,7 +73,7 @@ const DiaryListView = () => {
                 <Page
                     totalPages={totalPages}
                     currentPage={currentPage}
-                    url={'/diary/all'}
+                    url={pageUrl}
                 />
             </div>
         </div>

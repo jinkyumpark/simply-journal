@@ -1,5 +1,6 @@
 package com.jinkyumpark.simplyjournal.diary;
 
+import com.jinkyumpark.simplyjournal.diary.request.DiaryEditRequest;
 import com.jinkyumpark.simplyjournal.member.Member;
 import com.jinkyumpark.simplyjournal.member.MemberRepository;
 import com.jinkyumpark.simplyjournal.diary.request.DiaryAddRequest;
@@ -8,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -62,7 +63,7 @@ public class DiaryService {
         diary.setMember(memberOptional.get());
         diary.setContent(diaryAddRequest.getContent());
         diary.setEmotion(Emotion.valueOf(diaryAddRequest.getEmotion()));
-        diary.setSpecial(diaryAddRequest.isSpecial());
+        diary.setIsSpecial(diaryAddRequest.isSpecial());
 
         diaryRepository.save(diary);
     }
@@ -77,5 +78,34 @@ public class DiaryService {
 
     public List<Diary> getDiariesByKey(String key) {
         return diaryRepository.findAllByContentContaining(key);
+    }
+
+    @Transactional
+    public void editDiary(DiaryEditRequest diaryEditRequest, Long id) {
+        Diary oldDiary = diaryRepository.findById(id)
+                .orElseThrow(() -> {
+                    throw new IllegalStateException("수정하시려는 일기가 없어요");
+                });
+
+        if(diaryEditRequest.getDate() != null) {
+            oldDiary.setDiaryDate(diaryEditRequest.getDate());
+        }
+
+        if(diaryEditRequest.getContent() != null) {
+            oldDiary.setContent(diaryEditRequest.getContent());
+        }
+
+        if(diaryEditRequest.getEmotion() != null) {
+            Emotion editedEmotion = Emotion.valueOf(diaryEditRequest.getEmotion().toUpperCase());
+            oldDiary.setEmotion(editedEmotion);
+        }
+
+        if(diaryEditRequest.getIsPublic() != null) {
+            oldDiary.setIsPublic(diaryEditRequest.getIsPublic());
+        }
+
+        if(diaryEditRequest.getIsSpecial() != null) {
+            oldDiary.setIsSpecial(diaryEditRequest.getIsSpecial());
+        }
     }
 }

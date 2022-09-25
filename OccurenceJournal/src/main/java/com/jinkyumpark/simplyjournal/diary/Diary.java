@@ -34,7 +34,10 @@ public class Diary {
     private String content;
 
     @Column(name = "isSpecial", nullable = false)
-    private boolean isSpecial = false;
+    private Boolean isSpecial = false;
+
+    @Column(name = "isPublic", nullable = false)
+    private Boolean isPublic = false;
 
     @Column(name = "emotion", nullable = false)
     private Emotion emotion = Emotion.NOTPROVIDED;

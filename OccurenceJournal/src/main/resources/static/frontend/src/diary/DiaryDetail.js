@@ -45,7 +45,7 @@ const DiaryDetail = () => {
 
                 if (statusCode.startsWith('2')) {
                     alert('일기를 지웠어요');
-                    navigate('/diary/all');
+                    navigate('/diary/list/month');
                 } else {
                     alert('일기를 지울 수 없었어요. 다시 시도해 주세요');
                 }
@@ -57,7 +57,7 @@ const DiaryDetail = () => {
     };
 
     return (
-        <div className='container '>
+        <div className='container mt-5'>
             <div className='row justify-content-center'>
                 {isLoading ? (
                     <Loading />

@@ -62,7 +62,7 @@ const DiaryWrite = () => {
 
                 if (statusCode.startsWith('2')) {
                     alert('일기를 추가했어요!');
-                    navigate('/diary/all');
+                    navigate('/diary/list/month');
                 } else {
                     alert('일기를 추가할 수 없어요. 다시 시도해 주세요');
                 }
@@ -189,13 +189,13 @@ const DiaryWrite = () => {
                             type='switch'
                             name='isPublic'
                             label='전체 공개로 하기'
-                            onChange={(e) => setIsPublic(e.target.value)}
+                            onChange={() => setIsPublic(!isPublic)}
                         />
                         <Form.Check
                             type='switch'
                             id='isSpecial'
                             label='이 날은 특별한 날인가요?'
-                            onChange={(e) => setIsSpecial(e.target.value)}
+                            onChange={() => setIsSpecial(!isSpecial)}
                         />
                     </Form.Group>
 

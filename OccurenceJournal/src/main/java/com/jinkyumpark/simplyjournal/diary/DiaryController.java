@@ -2,6 +2,7 @@ package com.jinkyumpark.simplyjournal.diary;
 
 import com.jinkyumpark.simplyjournal.diary.request.DiaryAddRequest;
 import com.jinkyumpark.simplyjournal.diary.request.DiaryDeleteRequest;
+import com.jinkyumpark.simplyjournal.diary.request.DiaryEditRequest;
 import com.jinkyumpark.simplyjournal.diary.request.DiaryRequestMethod;
 import lombok.AllArgsConstructor;
 import org.apache.tomcat.jni.Local;
@@ -25,7 +26,7 @@ public class DiaryController {
 
     @GetMapping
     public Page<Diary> getAllDiaries(@RequestParam(name = "id") String memberId,
-                                     @RequestParam(name = "method") DiaryRequestMethod method,
+                                     @RequestParam(name = "method", required = false) DiaryRequestMethod method,
                                      @RequestParam(name = "start", required = false) String start,
                                      @RequestParam(name = "end", required = false) String end,
                                      @RequestParam(name = "page", required = false) Integer page,
@@ -33,6 +34,10 @@ public class DiaryController {
                                   ) {
         LocalDateTime startDate;
         LocalDateTime endDate;
+
+        if(method == null) {
+            method = DiaryRequestMethod.MONTH;
+        }
 
         if(method.equals(DiaryRequestMethod.WEEK)) {
             LocalDateTime today = LocalDateTime.now();
@@ -86,6 +91,12 @@ public class DiaryController {
     @GetMapping("search/{key}")
     public List<Diary> getDiarySerachResult(@PathVariable("key") String key) {
         return diaryService.getDiariesByKey(key);
+    }
+
+    @PutMapping("{id}")
+    public void editDiary(@RequestBody @Valid DiaryEditRequest diaryEditRequest,
+                          @PathVariable("id") Long id) {
+        diaryService.editDiary(diaryEditRequest, id);
     }
 
     @PostMapping

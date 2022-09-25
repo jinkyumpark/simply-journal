@@ -1,12 +1,16 @@
-import { Button } from 'react-bootstrap';
+// React
 import React from 'react';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+//Boostrap
+import { Button, ButtonGroup } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Form from 'react-bootstrap/Form';
+// Components
 
-const DiaryDateSelectView = () => {
+const DiaryDateSelectView = ({ method }) => {
     const [isRange, setIsRange] = useState(true);
 
     const selectedText = 'primary';
@@ -47,33 +51,64 @@ const DiaryDateSelectView = () => {
                 </Card.Body>
             </Card>
 
-            {isRange ? <RangeSelectView /> : <DateSelectView />}
+            {isRange ? <RangeSelectView method={method} /> : <DateSelectView />}
         </div>
     );
 };
 
-const RangeSelectView = () => {
+const RangeSelectView = ({ method }) => {
+    const rangeArray = [
+        {
+            key: 1,
+            range: 'week',
+            url: '/diary/list/week',
+            label: '이번 주',
+        },
+        {
+            key: 2,
+            range: 'month',
+            url: '/diary/list/month',
+            label: '이번 달',
+        },
+        {
+            key: 3,
+            range: 'year',
+            url: '/diary/list/year',
+            label: '이번 년도',
+        },
+        {
+            key: 4,
+            range: 'all',
+            url: '/diary/list/all',
+            label: '전체',
+        },
+    ];
+
     return (
         <Card>
             <Card.Body>
                 <ToggleButtonGroup
                     type='radio'
                     name='options'
-                    defaultValue={1}
                     className='col-12'
+                    defaultValue={method}
                 >
-                    <ToggleButton id='tbg-radio-1' value={1} className='col-3'>
-                        이번 주
-                    </ToggleButton>
-                    <ToggleButton id='tbg-radio-2' value={2} className='col-3'>
-                        이번 달
-                    </ToggleButton>
-                    <ToggleButton id='tbg-radio-3' value={3} className='col-3'>
-                        이번 년도
-                    </ToggleButton>
-                    <ToggleButton id='tbg-radio-4' value={4} className='col-3'>
-                        전체
-                    </ToggleButton>
+                    {rangeArray.map((range) => {
+                        return (
+                            <ToggleButton
+                                id={range.key}
+                                value={range.range}
+                                className='col-12'
+                            >
+                                <Link
+                                    to={range.url}
+                                    className='text-white text-decoration-none col-3'
+                                >
+                                    {range.label}
+                                </Link>
+                            </ToggleButton>
+                        );
+                    })}
                 </ToggleButtonGroup>
             </Card.Body>
         </Card>
