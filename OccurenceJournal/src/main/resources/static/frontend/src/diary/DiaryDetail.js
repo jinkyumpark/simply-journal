@@ -58,46 +58,41 @@ const DiaryDetail = () => {
 
     return (
         <div className='container mt-5'>
-            <div className='row justify-content-center'>
-                {isLoading ? (
-                    <Loading />
-                ) : diary ? (
-                    <>
-                        <Diary diary={diary} />
-                        <div className='row justify-content-center'>
-                            <div className='col-5 col-lg-3'>
-                                <Link to={'/diary/edit/' + id}>
-                                    <Button
-                                        variant='warning'
-                                        className='col-12'
-                                    >
-                                        수정하기
-                                    </Button>
-                                </Link>
-                            </div>
-                            <div className='col-5 col-lg-3'>
-                                <Button
-                                    variant='danger'
-                                    className='col-12'
-                                    onClick={() => {
-                                        if (
-                                            window.confirm(
-                                                '정말 일기를 삭제할까요?'
-                                            )
-                                        ) {
-                                            deleteDiary(id);
-                                        }
-                                    }}
-                                >
-                                    삭제하기
+            {isLoading ? (
+                <Loading />
+            ) : diary ? (
+                <>
+                    <Diary diary={diary} />
+                    <div className='row justify-content-center'>
+                        <div className='col-5 col-lg-3'>
+                            <Link to={'/diary/edit/' + id}>
+                                <Button variant='warning' className='col-12'>
+                                    수정하기
                                 </Button>
-                            </div>
+                            </Link>
                         </div>
-                    </>
-                ) : (
-                    <NotFound message={'없는 일기거나 비공개 일기에요'} />
-                )}
-            </div>
+                        <div className='col-5 col-lg-3'>
+                            <Button
+                                variant='danger'
+                                className='col-12'
+                                onClick={() => {
+                                    if (
+                                        window.confirm(
+                                            '정말 일기를 삭제할까요?'
+                                        )
+                                    ) {
+                                        deleteDiary(id);
+                                    }
+                                }}
+                            >
+                                삭제하기
+                            </Button>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <NotFound message={'없는 일기거나 비공개 일기에요'} />
+            )}
         </div>
     );
 };

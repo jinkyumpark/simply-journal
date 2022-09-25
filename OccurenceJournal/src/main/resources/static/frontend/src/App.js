@@ -2,13 +2,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Component
 import TopNav from './common/TopNav';
-import Main from './Main';
+import Main from './main/Main';
 import Introduction from './introduction/Introduction';
 import DiaryList from './diary/DiaryList';
 import DiaryDetail from './diary/DiaryDetail';
 import DiaryWrite from './diary/DiaryWrite';
-import SearchResult from './search/SearchResult';
 import DiaryEdit from './diary/DiaryEdit';
+import SearchResult from './search/SearchResult';
 
 function App() {
     return (

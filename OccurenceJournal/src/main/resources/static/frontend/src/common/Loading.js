@@ -14,7 +14,7 @@ const Loading = () => {
                 <div className='sr-only'></div>
             </div>
 
-            <h1 className='mt-5'>일기를 가져오고 있어요</h1>
+            <h1 className='mt-5 text-center'>일기를 가져오고 있어요</h1>
         </div>
     );
 };
