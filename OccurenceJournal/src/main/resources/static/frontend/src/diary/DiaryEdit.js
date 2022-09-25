@@ -220,7 +220,7 @@ const DiaryEdit = () => {
                                         너무 좋아요!
                                     </option>
                                     <option value='HAPPY'>좋아요</option>
-                                    <option value='SAD'>슬퍼요</option>
+                                    <option value='SAD'>슬퍼요/우울해요</option>
                                     <option value='ANGRY'>화나요</option>
                                     <option value='NEUTRAL'>
                                         그냥 평범해요
