@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.4ea24607.css",
-    "main.js": "/static/js/main.4cdb3726.js",
+    "main.js": "/static/js/main.1937447c.js",
     "static/media/red-diary-blue-bg.png": "/static/media/red-diary-blue-bg.87fe8d6e70278db9d444.png",
     "index.html": "/index.html",
     "main.4ea24607.css.map": "/static/css/main.4ea24607.css.map",
-    "main.4cdb3726.js.map": "/static/js/main.4cdb3726.js.map"
+    "main.1937447c.js.map": "/static/js/main.1937447c.js.map"
   },
   "entrypoints": [
     "static/css/main.4ea24607.css",
-    "static/js/main.4cdb3726.js"
+    "static/js/main.1937447c.js"
   ]
 }
