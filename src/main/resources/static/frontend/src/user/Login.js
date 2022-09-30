@@ -9,7 +9,7 @@ import googleIcon from '../images/login-icon-google.png';
 
 const Login = () => {
     const externalServiceLoginMessage = '외부 서비스로 로그인하기';
-    const joinSuggestionMessage = '아직 Simply Journal의 회원이 아니신가요?';
+    const joinSuggestionMessage = '아직 Simply Journal 회원이 아니신가요?';
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -20,6 +20,8 @@ const Login = () => {
             <Row className='justify-content-center align-items-center'>
                 <Card className='col-10 col-lg-5'>
                     <Card.Body className='p-5'>
+                        <h3 className='text-center'>로그인</h3>
+
                         <LoginForm handleLogin={handleLogin} />
 
                         <hr className='mt-4' />
