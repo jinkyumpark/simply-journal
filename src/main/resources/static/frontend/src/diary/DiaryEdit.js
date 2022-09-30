@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 // Components
+import DateSelect from '../common/DateSelect';
 // Bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -14,14 +15,12 @@ const DiaryEdit = () => {
     let { id } = useParams();
     let navigate = useNavigate();
 
-    const [isNotFound, setIsNotFound] = useState(false);
+    const editUrl = `http://localhost/api/v1/diary/${id}`;
 
     const [currentYear, currentMonth, currentDay] = new Date()
         .toISOString()
         .split('T')[0]
         .split('-');
-    const monthDayLength = new Date(currentYear, currentMonth, 0).getDate();
-
     const [selectedYear, setSelectedYear] = useState(currentYear);
     const [selectedMonth, setSelectedMonth] = useState(currentMonth);
     const [selectedDay, setSelectedDay] = useState(currentDay);
@@ -31,25 +30,10 @@ const DiaryEdit = () => {
     const [isSpecial, setIsSpecial] = useState(false);
 
     const [validated, setValidated] = useState(false);
+    const [isNotFound, setIsNotFound] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(
-            JSON.stringify({
-                date: `${selectedYear}-${
-                    selectedMonth.length === 1
-                        ? '0' + selectedMonth
-                        : selectedMonth
-                }-${
-                    selectedDay.length === 1 ? '0' + selectedDay : selectedDay
-                }T00:00`,
-                content: content,
-                emotion: selectedEmotion,
-                isSpecial: isSpecial,
-                isPublic: isPublic,
-            })
-        );
 
         const form = e.currentTarget;
         if (!form.checkValidity()) {
@@ -92,7 +76,7 @@ const DiaryEdit = () => {
     };
 
     useEffect(() => {
-        fetch(`http://localhost/api/v1/diary/${id}`)
+        fetch(editUrl)
             .then((res) => {
                 return res.json();
             })
@@ -109,6 +93,7 @@ const DiaryEdit = () => {
             })
             .catch((err) => {
                 setIsNotFound(true);
+                console.log(err);
             });
     }, []);
 
@@ -120,81 +105,11 @@ const DiaryEdit = () => {
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <div className='row'>
                         <Form.Group className='mb-3'>
-                            <div className='row'>
-                                <div className='col-4'>
-                                    <Form.Select
-                                        size='lg'
-                                        onChange={(e) =>
-                                            setSelectedYear(e.target.value)
-                                        }
-                                        value={selectedYear}
-                                    >
-                                        {[...Array(10).keys()].map((year) => {
-                                            return (
-                                                <option
-                                                    name='year'
-                                                    value={currentYear - year}
-                                                >
-                                                    {currentYear - year + '년'}
-                                                </option>
-                                            );
-                                        })}
-                                    </Form.Select>
-                                </div>
-
-                                <div className='col-4'>
-                                    <Form.Select
-                                        size='lg'
-                                        onChange={(e) =>
-                                            setSelectedMonth(e.target.value)
-                                        }
-                                    >
-                                        {[...Array(12).keys()].map((month) => {
-                                            return (
-                                                <option
-                                                    name='month'
-                                                    value={month + 1}
-                                                    selected={
-                                                        parseInt(
-                                                            selectedMonth
-                                                        ) ===
-                                                        month + 1
-                                                    }
-                                                >
-                                                    {month + 1 + '월'}
-                                                </option>
-                                            );
-                                        })}
-                                    </Form.Select>
-                                </div>
-
-                                <div className='col-4'>
-                                    <Form.Select
-                                        size='lg'
-                                        onChange={(e) =>
-                                            setSelectedDay(e.target.value)
-                                        }
-                                    >
-                                        {[...Array(monthDayLength).keys()].map(
-                                            (day) => {
-                                                return (
-                                                    <option
-                                                        selected={
-                                                            parseInt(
-                                                                selectedDay
-                                                            ) ===
-                                                            day + 1
-                                                        }
-                                                        value={day + 1}
-                                                    >
-                                                        {day + 1 + '일'}
-                                                    </option>
-                                                );
-                                            }
-                                        )}
-                                    </Form.Select>
-                                </div>
-                            </div>
+                            <DateSelect
+                                setSelectedYear={setSelectedYear}
+                                setSelectedMonth={setSelectedMonth}
+                                setSelectedDay={setSelectedDay}
+                            />
                         </Form.Group>
 
                         <Form.Group className='mb-3'>
