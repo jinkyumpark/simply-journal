@@ -1,7 +1,7 @@
 package com.jinkyumpark.simplyjournal.diary;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.jinkyumpark.simplyjournal.member.Member;
+import com.jinkyumpark.simplyjournal.appuser.AppUser;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,7 +28,7 @@ public class Diary {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "member_diary_fk"))
-    private Member member;
+    private AppUser appUser;
 
     @Column(name = "content", nullable = false)
     private String content;

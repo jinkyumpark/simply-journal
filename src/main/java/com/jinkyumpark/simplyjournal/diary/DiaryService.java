@@ -1,8 +1,8 @@
 package com.jinkyumpark.simplyjournal.diary;
 
 import com.jinkyumpark.simplyjournal.diary.request.DiaryEditRequest;
-import com.jinkyumpark.simplyjournal.member.Member;
-import com.jinkyumpark.simplyjournal.member.MemberRepository;
+import com.jinkyumpark.simplyjournal.appuser.AppUser;
+import com.jinkyumpark.simplyjournal.appuser.AppUserRepository;
 import com.jinkyumpark.simplyjournal.diary.request.DiaryAddRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,10 +19,10 @@ import java.util.Optional;
 @Service
 public class DiaryService {
     private DiaryRepository diaryRepository;
-    private MemberRepository memberRepository;
+    private AppUserRepository appUserRepository;
 
     public Page<Diary> getDiariesByMemberIdWithRange(String memberId, LocalDateTime startDate, LocalDateTime endDate, PageRequest pageRequest) {
-        Optional<Member> memberOptional = memberRepository.findByMemberId(memberId);
+        Optional<AppUser> memberOptional = appUserRepository.findByMemberId(memberId);
 
         if(memberOptional.isEmpty()) {
             throw new IllegalStateException("User does not exists");
@@ -50,7 +50,7 @@ public class DiaryService {
             diary.setDiaryDate(diaryAddRequest.getDiaryDate());
         }
 
-        Optional<Member> memberOptional = memberRepository.findById(diaryAddRequest.getMemberId());
+        Optional<AppUser> memberOptional = appUserRepository.findById(diaryAddRequest.getMemberId());
         if(memberOptional.isEmpty()) {
             throw new IllegalStateException("User does not exists");
         }
@@ -60,7 +60,7 @@ public class DiaryService {
             throw new IllegalStateException("이미 같은 날에 일기가 있어요");
         }
 
-        diary.setMember(memberOptional.get());
+        diary.setAppUser(memberOptional.get());
         diary.setContent(diaryAddRequest.getContent());
         diary.setEmotion(Emotion.valueOf(diaryAddRequest.getEmotion()));
         diary.setIsSpecial(diaryAddRequest.isSpecial());
