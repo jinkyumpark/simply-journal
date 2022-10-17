@@ -42,7 +42,8 @@
     ]
   },
   "proxy": "http://localhost",
-  "homepage": "http://diary.jinkyumpark.com",
+   "homepage": "https://jinkyumpark.github.io",
+  
   "devDependencies": {
     "gh-pages": "^4.0.0"
   }

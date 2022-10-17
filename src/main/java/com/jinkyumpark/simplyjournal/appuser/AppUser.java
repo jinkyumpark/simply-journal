@@ -16,7 +16,7 @@ import java.util.List;
 
 @Entity(name = "AppUser")
 @Table(name = "app_user", uniqueConstraints = {
-        @UniqueConstraint(name = "app_user_id_unique", columnNames = "app_user_id")
+        @UniqueConstraint(name = "app_user_id_unique", columnNames = "id")
 })
 public class AppUser {
     @Id

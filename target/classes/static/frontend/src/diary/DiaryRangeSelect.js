@@ -127,7 +127,7 @@ const DateSelectView = () => {
 
     const [selectedStartYear, setSelectedStartYear] = useState(currentYear);
     const [selectedStartMonth, setSelectedStartMonth] = useState(currentMonth);
-    const [selectedStartDay, setSelectedStartDay] = useState(currentDay);
+    const [selectedStartDay, setSelectedStartDay] = useState('1');
 
     const [selectedEndYear, setSelectedEndYear] = useState(currentYear);
     const [selectedEndMonth, setSelectedEndMonth] = useState(currentMonth);
@@ -138,7 +138,7 @@ const DateSelectView = () => {
 
         const start =
             selectedStartYear +
-            (selectedEndMonth.length === 1 ? '0' : '') +
+            (selectedStartMonth.length === 1 ? '0' : '') +
             selectedStartMonth +
             (selectedStartDay.length === 1 ? '0' : '') +
             selectedStartDay;
@@ -149,6 +149,9 @@ const DateSelectView = () => {
             (selectedEndDay.length === 1 ? '0' : '') +
             selectedEndDay;
         const baseUrl = '/diary/list/range';
+
+        console.log(start);
+        console.log(end);
 
         navigate(`${baseUrl}?start=${start}&end=${end}`);
         window.location.reload(true);
@@ -194,7 +197,7 @@ const DateSelectView = () => {
                                                 value={month + 1}
                                                 selected={
                                                     parseInt(currentMonth) ===
-                                                    month + 2
+                                                    month + 1
                                                 }
                                             >
                                                 {month + 1 + '월'}
@@ -214,9 +217,10 @@ const DateSelectView = () => {
                                         (day) => {
                                             return (
                                                 <option
+                                                    value={day + 1}
                                                     selected={
                                                         parseInt(currentDay) ===
-                                                        day + 1
+                                                        1
                                                     }
                                                 >
                                                     {day + 1 + '일'}

@@ -7,15 +7,20 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import DateSelect from '../common/DateSelect';
 
 const DiaryWrite = () => {
+    const postDiaryUrl = 'http://localhost/api/v1/diary';
+    const successMessage = '일기를 추가했어요!';
+    const successRedirectUrl = '/diary/list/month';
+    const failMessage = '일기를 추가할 수 없어요. 다시 시도해 주세요';
+
     let navigate = useNavigate();
 
     const [currentYear, currentMonth, currentDay] = new Date()
         .toISOString()
         .split('T')[0]
         .split('-');
-    const monthDayLength = new Date(currentYear, currentMonth, 0).getDate();
     const [selectedYear, setSelectedYear] = useState(currentYear);
     const [selectedMonth, setSelectedMonth] = useState(currentMonth);
     const [selectedDay, setSelectedDay] = useState(currentDay);
@@ -26,14 +31,14 @@ const DiaryWrite = () => {
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = (event) => {
+        event.preventDefault();
+
         const form = event.currentTarget;
         if (!form.checkValidity()) {
-            event.preventDefault();
             event.stopPropagation();
         }
 
-        event.preventDefault();
-        fetch('http://localhost/api/v1/diary', {
+        fetch(postDiaryUrl, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -61,10 +66,10 @@ const DiaryWrite = () => {
                 const statusCode = res.status.toString();
 
                 if (statusCode.startsWith('2')) {
-                    alert('일기를 추가했어요!');
-                    navigate('/diary/list/month');
+                    alert(successMessage);
+                    navigate(successRedirectUrl);
                 } else {
-                    alert('일기를 추가할 수 없어요. 다시 시도해 주세요');
+                    alert(failMessage);
                 }
             })
             .catch((err) => {
@@ -77,72 +82,11 @@ const DiaryWrite = () => {
         <div className='container mt-5'>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group className='mb-3'>
-                    <div className='row'>
-                        <div className='col-4'>
-                            <Form.Select
-                                size='lg'
-                                onChange={(e) =>
-                                    setSelectedYear(e.target.value)
-                                }
-                            >
-                                {[...Array(10).keys()].map((year) => {
-                                    return (
-                                        <option
-                                            name='year'
-                                            value={currentYear - year}
-                                        >
-                                            {currentYear - year + '년'}
-                                        </option>
-                                    );
-                                })}
-                            </Form.Select>
-                        </div>
-                        <div className='col-4'>
-                            <Form.Select
-                                size='lg'
-                                onChange={(e) =>
-                                    setSelectedMonth(e.target.value)
-                                }
-                            >
-                                {[...Array(12).keys()].map((month) => {
-                                    return (
-                                        <option
-                                            name='month'
-                                            value={month + 1}
-                                            selected={
-                                                parseInt(currentMonth) ===
-                                                month + 1
-                                            }
-                                        >
-                                            {month + 1 + '월'}
-                                        </option>
-                                    );
-                                })}
-                            </Form.Select>
-                        </div>
-                        <div className='col-4'>
-                            <Form.Select
-                                size='lg'
-                                onChange={(e) => setSelectedDay(e.target.value)}
-                            >
-                                {[...Array(monthDayLength).keys()].map(
-                                    (day) => {
-                                        return (
-                                            <option
-                                                selected={
-                                                    parseInt(currentDay) ===
-                                                    day + 1
-                                                }
-                                                value={day + 1}
-                                            >
-                                                {day + 1 + '일'}
-                                            </option>
-                                        );
-                                    }
-                                )}
-                            </Form.Select>
-                        </div>
-                    </div>
+                    <DateSelect
+                        setSelectedYear={setSelectedYear}
+                        setSelectedMonth={setSelectedMonth}
+                        setSelectedDay={setSelectedDay}
+                    />
                 </Form.Group>
 
                 <Form.Group className='mb-3'>

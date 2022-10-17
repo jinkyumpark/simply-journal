@@ -20,7 +20,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/diary")
 @CrossOrigin("http://localhost:3000")
-
 public class DiaryController {
     private DiaryService diaryService;
 

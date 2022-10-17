@@ -14,7 +14,9 @@ const Page = ({ totalPages, currentPage, url }) => {
                                 }
                             >
                                 <a
-                                    href={url + '?page=' + pageNumber}
+                                    href={`${url}${
+                                        url.indexOf('?') === -1 ? '?' : '&'
+                                    }page=${pageNumber}`}
                                     className='page-link'
                                 >
                                     {pageNumber}

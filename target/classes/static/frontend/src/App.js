@@ -9,6 +9,8 @@ import DiaryDetail from './diary/DiaryDetail';
 import DiaryWrite from './diary/DiaryWrite';
 import DiaryEdit from './diary/DiaryEdit';
 import SearchResult from './search/SearchResult';
+import Login from './user/Login';
+import Join from './user/Join';
 
 function App() {
     return (
@@ -26,6 +28,9 @@ function App() {
                     <Route path='/diary/edit/:id' element={<DiaryEdit />} />
 
                     <Route path='/search/:key' element={<SearchResult />} />
+
+                    <Route path='/login' element={<Login />} />
+                    <Route path='join' element={<Join />} />
                 </Routes>
             </Router>
         </div>

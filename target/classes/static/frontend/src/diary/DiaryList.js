@@ -15,7 +15,18 @@ const DiaryListView = () => {
 
     const noDiaryMessage =
         '선택하신 기간내에는 일기가 없어요 어서 추가해 보세요!';
-    const pageUrl = `/diary/list/${method}`;
+
+    const pageUrl = `/diary/list/${method}${
+        method.toUpperCase() === 'RANGE'
+            ? `?${location.search.substring(
+                  location.search.indexOf('s'),
+                  location.search.indexOf('s') + 14
+              )}&${location.search.substring(
+                  location.search.indexOf('e'),
+                  location.search.indexOf('e') + 12
+              )}`
+            : ''
+    }`;
 
     const [diaries, setDiaries] = useState();
     const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +38,9 @@ const DiaryListView = () => {
         const page =
             location.search.indexOf('page') === -1
                 ? 1
-                : location.search.substring(location.search.indexOf('=') + 1);
+                : location.search.substring(
+                      location.search.indexOf('page') + 5
+                  );
         setCurrentPage(page);
 
         const url = `http://localhost/api/v1/diary?id=jinkyumpark&page=${
@@ -43,8 +56,6 @@ const DiaryListView = () => {
                   )}`
                 : ''
         }`;
-
-        console.log(url);
 
         fetch(url)
             .then((res) => {

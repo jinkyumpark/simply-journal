@@ -21,14 +21,14 @@ public class DiaryService {
     private DiaryRepository diaryRepository;
     private AppUserRepository appUserRepository;
 
-    public Page<Diary> getDiariesByMemberIdWithRange(String memberId, LocalDateTime startDate, LocalDateTime endDate, PageRequest pageRequest) {
-        Optional<AppUser> memberOptional = appUserRepository.findByMemberId(memberId);
+    public Page<Diary> getDiariesByMemberIdWithRange(String email, LocalDateTime startDate, LocalDateTime endDate, PageRequest pageRequest) {
+        Optional<AppUser> memberOptional = appUserRepository.findByEmail(email);
 
         if(memberOptional.isEmpty()) {
             throw new IllegalStateException("User does not exists");
         }
 
-        return diaryRepository.findAllByMemberAndDiaryDateBetweenOrderByDiaryDateDesc(memberOptional.get(), startDate, endDate, pageRequest);
+        return diaryRepository.findAllByAppUserAndDiaryDateBetweenOrderByDiaryDateDesc(memberOptional.get(), startDate, endDate, pageRequest);
     }
 
     public Diary getDiaryById(Long id) {
@@ -55,7 +55,7 @@ public class DiaryService {
             throw new IllegalStateException("User does not exists");
         }
 
-        List<Diary> diaryWithSameDate = diaryRepository.findAllByMemberAndDiaryDateIs(memberOptional.get(), diary.getDiaryDate());
+        List<Diary> diaryWithSameDate = diaryRepository.findAllByAppUserAndDiaryDateIs(memberOptional.get(), diary.getDiaryDate());
         if(! diaryWithSameDate.isEmpty()) {
             throw new IllegalStateException("이미 같은 날에 일기가 있어요");
         }
