@@ -70,7 +70,7 @@
 				<configuration>
 					<profiles>
 						<profile>dev</profile>
-						<profile>deployment</profile>
+						<profile>dep</profile>
 					</profiles>
 				</configuration>
 			</plugin>
