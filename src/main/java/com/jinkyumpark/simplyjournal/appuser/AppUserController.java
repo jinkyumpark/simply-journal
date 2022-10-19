@@ -1,6 +1,7 @@
 package com.jinkyumpark.simplyjournal.appuser;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -11,11 +12,6 @@ import java.util.List;
 @RequestMapping("/api/v1/user")
 public class AppUserController {
     private AppUserService userService;
-
-    @GetMapping("all")
-    public List<AppUser> getAllAppUsers() {
-        return userService.getAllUsers();
-    }
 
     @PostMapping
     public void addAppUser(@RequestBody @Valid AppUser appUser) {
