@@ -17,11 +17,28 @@
 	- 내가 쓴 일기 삭제, 편집
 	- 일기 내용 검색
 	- 간단한 서비스 소개 페이지
-2. 메인 페이지 기능 추가
-3. 로그인 기능 추가
+2. 로그인 기능 추가
+3. 메인 페이지 기능 추가
 4. 일기 공유 기능 추가
+	- 댓글 기능
+    - 공개 설정에 따라 접근 가능 (전체, 친구, 비공개)
 5. 다른 유저 팔로우 기능 추가
 
 # URL Mapping
+## Front
+|                    URI                    |      Requirements      |                     Explanation                     |
+|:-----------------------------------------:|:----------------------:|:---------------------------------------------------:|
+|                     /                     |       Logged In        |          Main page featuring past diaries           |
+|               /introduction               |           -            | Introduction to the service, login/join suggestions |
+|       /diary/:RANGE?page&start&end        |       Logged In        |         List of Diaries with Date Selector          |
+|               /diary/write                |       Logged In        |                  Diary Write Form                   |
+|           /diary/eidt/:DIARY_ID           |       Logged In        |             Individual Diary Edit Form              |
+| /diary/share/:USERNAME/:YEAR/:MONTH/:DATE | Diary is set to public |     Indivitual diary view with comment section      |
+|             /search/:KEYWORD              |       Logged In        |           Search keyword from my diaries            |
+|                  /login                   |           -            |                     Login Form                      |
+|                   /join                   |       Logged out       |                      Join Form                      |
+|                   /faq                    |           -            |                      Faq View                       |
+|                   /qna                    |           -            |                      Qna View                       |
+|                /qna/write                 |           -            |                   Qna Write Form                    |
 
 # 오류 해결 일지
