@@ -1,3 +1,8 @@
+<h1 align="center">현재 개발중이지 않고, 우선순위도 밀려 있는 프로젝트입니다</h1>
+
+# 더 자세히 알아보기
+[jinkyumpark.com/simply-journal](https://jinkyumpark.com/portfolio/simply-journal)
+
 # 기획
 - 일기를 매일 쓰는 건 너무 어려움
 - 하지만 예전 일기를 보며 추억에 빠지는건 너무 즐거움
